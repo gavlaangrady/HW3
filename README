@@ -40,6 +40,7 @@ Directory Structure:
 app.py: Flask application code with routes and database interactions.
 templates/unique_fruits.html: HTML template for displaying unique fruits.
 requirements.txt: List of required Python packages.
+
 Database Schema
 The application assumes the following database schema:
 
