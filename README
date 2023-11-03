@@ -12,3 +12,82 @@ https://github.com/gavlaangrady
 
    ```bash
    git clone https://github.com/gavlaangrady/HW3
+
+
+Change directory to the project folder:
+
+## bash
+cd flask-postgresql-basket-app
+Install the required Python packages:
+
+## bash
+pip install -r requirements.txt
+
+Set up your PostgreSQL database and configure the database connection in the Flask app:
+
+Run the Flask application:
+
+## bash
+python app.py
+Access the app in your web browser at http://127.0.0.1:5000.
+
+Routes:
+/api/update_basket_a: Adds a new fruit ('Cherry') to basket_a. It will either show "Success!" or an error message from PostgreSQL on the browser.
+
+/api/unique: Displays unique fruits from both basket_a and basket_b in an HTML table. If there are any errors from PostgreSQL, it will display the error message on the browser.
+
+Directory Structure:
+app.py: Flask application code with routes and database interactions.
+templates/unique_fruits.html: HTML template for displaying unique fruits.
+requirements.txt: List of required Python packages.
+Database Schema
+The application assumes the following database schema:
+
+#python 
+import psycopg2
+
+# Database connection configuration
+db_config = {
+    'dbname': 'fruit_baskets',
+    'user': 'gavlaangrady',
+    'password': '12345',
+    'host': 'localhost',
+    'port': '5432'
+}
+
+# SQL statements to create tables
+create_table_basket_a = """
+CREATE TABLE IF NOT EXISTS basket_a (
+    a INT PRIMARY KEY,
+    fruit_a VARCHAR (100) NOT NULL
+);
+"""
+
+create_table_basket_b = """
+CREATE TABLE IF NOT EXISTS basket_b (
+    b INT PRIMARY KEY,
+    fruit_b VARCHAR (100) NOT NULL
+);
+"""
+
+# Connect to the database and create tables
+try:
+    conn = psycopg2.connect(**db_config)
+    cursor = conn.cursor()
+    
+    # Create the basket_a table
+    cursor.execute(create_table_basket_a)
+    
+    # Create the basket_b table
+    cursor.execute(create_table_basket_b)
+    
+    conn.commit()
+    cursor.close()
+    conn.close()
+    
+    print("Tables created successfully.")
+except Exception as e:
+    print(f"Error: {str(e)}")
+
+
+Feel free to fork and modify this project for your own needs or use it as a reference for building Flask applications with PostgreSQL. Enjoy!
