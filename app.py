@@ -7,11 +7,11 @@ app = Flask(__name)
 
 # PostgreSQL database connection configuration
 db_config = {
-    'dbname': 'your_db_name',
-    'user': 'your_db_user',
-    'password': 'your_db_password',
-    'host': 'your_db_host',
-    'port': 'your_db_port'
+    'dbname': 'fruit_baskets',
+    'user': 'gavlaangrady',
+    'password': '12345',
+    'host': 'localhost',
+    'port': '5432'
 }
 
 # Route for updating basket_a
